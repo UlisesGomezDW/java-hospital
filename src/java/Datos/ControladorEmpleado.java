@@ -23,13 +23,13 @@ public class ControladorEmpleado extends Controlador {
      * Método para consultar la lista de empleados de la base de datos
      * @return lista de empleados
      */
-    public ArrayList<Empleado> consultarEmpleados(){
+    public ArrayList<Empleado> consultarEmpleados(String extraQuery){
         ArrayList<Empleado> empleados = new ArrayList<>();
         
         Statement st;
         try {
             st = super.conexion.createStatement();
-            String query = "SELECT * FROM " + TABLE;
+            String query = "SELECT * FROM " + TABLE + extraQuery;
             ResultSet rs = st.executeQuery(query);
             while(rs.next()){
                 Empleado e = new Empleado();

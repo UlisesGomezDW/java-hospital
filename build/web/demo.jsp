@@ -7,6 +7,7 @@
 <%@page import="java.util.ArrayList" %>
 <%@page import="Datos.ControladorEmpleado" %>
 <%@page import="Modelo.Empleado" %>
+<%@page import="Estadisticas.EmpleadoEstadisticas" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,7 +20,7 @@
         <%
             ControladorEmpleado ctrEmpleado = new ControladorEmpleado();
             ctrEmpleado.conectar();
-            ArrayList<Empleado> empleados = ctrEmpleado.consultarEmpleados();
+            ArrayList<Empleado> empleados = ctrEmpleado.consultarEmpleados(" ORDER BY salario DESC");
         %>
         <table border="1" width="100%">
             <tr>
@@ -39,5 +40,16 @@
                 }
             %>
         </table>
+        <br/>
+        <h2>Estadisticas</h2>
+        <%
+            EmpleadoEstadisticas data = new EmpleadoEstadisticas(empleados);
+            out.println("<p>Empleados: " + data.obtenerNumeroDeEmpleados() + "</p>");
+            out.println("<p>Empleados Masculino: " + data.obtenerNumeroDeEmpleadosMasculino() + "</p>");
+            out.println("<p>Empleados Femenino: " + data.obtenerNumeroDeEmpleadosFemenino() + "</p>");
+            out.println("<p>Empleado Salario Menor: " + data.obtenerEmpleadoSalarioMenor().getNombre() + "</p>");
+            out.println("<p>Empleado Salario Mayor: " + data.obtenerEmpleadoSalarioMayor().getNombre() + "</p>");
+            out.println("<p>Salario Promedio: " + data.obtenerSalarioPromedio() + "</p>");
+        %>
     </body>
 </html>
