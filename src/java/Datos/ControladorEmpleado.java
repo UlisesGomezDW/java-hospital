@@ -55,7 +55,7 @@ public class ControladorEmpleado extends Controlador {
     public boolean agregarEmpleado(Empleado empleado) {
         boolean estado = false;
         PreparedStatement ps; 
-        String query = "INSERT INTO " + TABLE + " VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO " + TABLE + " VALUES (?, ?, ?, ?, ?)";
         try {
             ps = super.conexion.prepareStatement(query);
             ps.setInt(1, empleado.getNoEmpleado());

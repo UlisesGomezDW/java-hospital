@@ -1,5 +1,9 @@
-<%-- Document : index Created on : 13/01/2023, 06:22:13 PM Author : GÓMEZ GÓMEZ
-BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- Document : index Created on : 13/01/2023, 06:22:13 PM Author : GÃMEZ GÃMEZ
+BRYAN ULISES --%> 
+<%@page import="java.util.ArrayList" %>
+<%@page import="Datos.ControladorEmpleado" %>
+<%@page import="Modelo.Empleado" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,6 +20,11 @@ BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
     />
   </head>
   <body>
+    <%
+      ControladorEmpleado ctrEmpleado = new ControladorEmpleado();
+      ctrEmpleado.conectar();
+      ArrayList<Empleado> empleados = ctrEmpleado.consultarEmpleados("");
+    %>
     <section class="page page-screen page-table">
       <header class="page-header">
         <div class="page-header-nav">
@@ -36,24 +45,24 @@ BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Salario</th>
                 <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <button type="button" class="btn btn-outline-danger btn-sm">
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
+              <% 
+                for (Empleado e: empleados){
+                    out.println("<tr><td scope='row'>" + e.getNoEmpleado() + "</td>");
+                    out.println("<td>" + e.getNombre() + "</td>");
+                    out.println("<td>" + e.getEdad()+ "</td>");
+                    out.println("<td>" + e.getSexo() + "</td>");
+                    out.println("<td>$" + String.format("%,.2f", e.getSalario()) + "</td>");
+                    out.println("<td><button type='button' class='btn btn-outline-danger btn-sm'>Eliminar</button></td></tr>");
+                }
+              %>
             </tbody>
           </table>
         </div>
