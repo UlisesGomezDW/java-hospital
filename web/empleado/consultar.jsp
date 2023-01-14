@@ -40,6 +40,16 @@ BRYAN ULISES --%>
         </div>
       </header>
       <main class="page-main">
+        <div class="page-table-head">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Borrar empleado
+          </button>
+        </div>
         <div class="table-responsive">
           <table class="table table-hover table-fixed">
             <thead>
@@ -49,7 +59,6 @@ BRYAN ULISES --%>
                 <th scope="col">Edad</th>
                 <th scope="col">Sexo</th>
                 <th scope="col">Salario</th>
-                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
@@ -59,8 +68,7 @@ BRYAN ULISES --%>
                     out.println("<td>" + e.getNombre() + "</td>");
                     out.println("<td>" + e.getEdad()+ "</td>");
                     out.println("<td>" + e.getSexo() + "</td>");
-                    out.println("<td>$" + String.format("%,.2f", e.getSalario()) + "</td>");
-                    out.println("<td><button type='button' class='btn btn-outline-danger btn-sm'>Eliminar</button></td></tr>");
+                    out.println("<td>$" + String.format("%,.2f", e.getSalario()) + "</td></tr>");
                 }
               %>
             </tbody>
@@ -69,5 +77,48 @@ BRYAN ULISES --%>
       </main>
       <footer class="page-footer">Hospital Melgarejo 2022</footer>
     </section>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Borrar empleado
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="eliminarAction.jsp">
+              <div class="page-table-field-delete">
+                <label class="form-label">Número de empleado</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="no"
+                  name="no"
+                  placeholder="Ej. 123"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
