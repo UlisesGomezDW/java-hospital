@@ -1,7 +1,15 @@
 .page-table .page-main {
   padding: 30px 50px 0;
 }
-
+.page-table-head {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+.page-table-field-delete {
+  margin-bottom: 20px;
+}
 @media screen and (max-width: 768px) {
   .page-table .page-main {
     padding: 30px 30px 0;

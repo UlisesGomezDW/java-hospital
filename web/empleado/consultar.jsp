@@ -1,5 +1,9 @@
-<%-- Document : index Created on : 13/01/2023, 06:22:13 PM Author : GÓMEZ GÓMEZ
-BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- Document : index Created on : 13/01/2023, 06:22:13 PM Author : GÃMEZ GÃMEZ
+BRYAN ULISES --%> 
+<%@page import="java.util.ArrayList" %>
+<%@page import="Datos.ControladorEmpleado" %>
+<%@page import="Modelo.Empleado" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,6 +20,11 @@ BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
     />
   </head>
   <body>
+    <%
+      ControladorEmpleado ctrEmpleado = new ControladorEmpleado();
+      ctrEmpleado.conectar();
+      ArrayList<Empleado> empleados = ctrEmpleado.consultarEmpleados("");
+    %>
     <section class="page page-screen page-table">
       <header class="page-header">
         <div class="page-header-nav">
@@ -31,34 +40,85 @@ BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
         </div>
       </header>
       <main class="page-main">
+        <div class="page-table-head">
+          <button
+            type="button"
+            class="btn btn-danger"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            Borrar empleado
+          </button>
+        </div>
         <div class="table-responsive">
           <table class="table table-hover table-fixed">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-                <th scope="col"></th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">Salario</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-                <td>
-                  <button type="button" class="btn btn-outline-danger btn-sm">
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
+              <% 
+                for (Empleado e: empleados){
+                    out.println("<tr><td scope='row'>" + e.getNoEmpleado() + "</td>");
+                    out.println("<td>" + e.getNombre() + "</td>");
+                    out.println("<td>" + e.getEdad()+ "</td>");
+                    out.println("<td>" + e.getSexo() + "</td>");
+                    out.println("<td>$" + String.format("%,.2f", e.getSalario()) + "</td></tr>");
+                }
+              %>
             </tbody>
           </table>
         </div>
       </main>
       <footer class="page-footer">Hospital Melgarejo 2022</footer>
     </section>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Borrar empleado
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="eliminarAction.jsp">
+              <div class="page-table-field-delete">
+                <label class="form-label">Número de empleado</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="no"
+                  name="no"
+                  placeholder="Ej. 123"
+                  required
+                />
+              </div>
+              <button type="submit" class="btn btn-danger">Eliminar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

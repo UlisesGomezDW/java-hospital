@@ -31,7 +31,11 @@ BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
         </div>
       </header>
       <main class="page-main">
-        <form class="page-form-container" id="form">
+        <form
+          method="post"
+          action="agregarAction.jsp"
+          class="page-form-container"
+        >
           <div class="page-form-row page-form-row1">
             <div class="page-form-field">
               <label class="form-label">Número de empleado</label>
