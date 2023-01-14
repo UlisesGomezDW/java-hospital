@@ -1,5 +1,5 @@
-<%-- Document : index Created on : 13/01/2023, 06:22:13 PM Author : bryanulises
---%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%-- Document : index Created on : 13/01/2023, 06:22:13 PM Author : GÓMEZ GÓMEZ
+BRYAN ULISES --%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -30,10 +30,12 @@
           <h2 class="page-header-name">Empleado</h2>
         </div>
         <div class="page-header-links">
-          <a class="link-primary page-header-link page-header-link-mg" href="/"
+          <a
+            class="link-primary page-header-link page-header-link-mg"
+            href="consultar.jsp"
             >Ver todos</a
           >
-          <a class="link-primary page-header-link" href="/"
+          <a class="link-primary page-header-link" href="agregar.jsp"
             >Agregar empleado +</a
           >
         </div>
