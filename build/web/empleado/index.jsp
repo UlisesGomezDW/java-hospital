@@ -26,7 +26,7 @@ BRYAN ULISES --%>
             ctrEmpleado.conectar();
             ArrayList<Empleado> empleados = ctrEmpleado.consultarEmpleados(" ORDER BY salario DESC");
             EmpleadoEstadisticas data = new EmpleadoEstadisticas(empleados);
-        %>
+    %>
     <section class="page page-screen page-dashboard">
       <header class="page-header">
         <div class="page-header-nav">
