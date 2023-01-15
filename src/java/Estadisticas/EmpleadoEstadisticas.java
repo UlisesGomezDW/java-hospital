@@ -80,8 +80,12 @@ public class EmpleadoEstadisticas {
     * @return Empleado con el salario menor
     */
     public Empleado obtenerEmpleadoSalarioMenor(){
-        int max = this.empleados.size() - 1;
-        return this.empleados.get(max);
+        int size = obtenerNumeroDeEmpleados();
+        if( size > 0 && this.empleados.get(size - 1) != null) {
+            return this.empleados.get(size - 1);
+        } {
+            return new Empleado(0, "No hay empleado", 0, "", 0);
+        }
     }
 
     /**
@@ -89,7 +93,12 @@ public class EmpleadoEstadisticas {
     * @return Empleado con el salario mayor
     */
     public Empleado obtenerEmpleadoSalarioMayor(){
-        return this.empleados.get(0);
+        int size = this.obtenerNumeroDeEmpleados();
+        if(size > 0 && this.empleados.get(0) != null){
+            return this.empleados.get(0);
+        } else {
+            return new Empleado(0, "No hay empleado", 0, "", 0);
+        }
     }
 
     /**
@@ -98,10 +107,14 @@ public class EmpleadoEstadisticas {
     */
     public double obtenerSalarioPromedio(){
         double total = 0;
-        for(Empleado e: this.empleados){
-            total += e.getSalario();
+        if(this.obtenerNumeroDeEmpleados() > 0){
+            for(Empleado e: this.empleados){
+                total += e.getSalario();
+            }
+    
+            return total / this.obtenerNumeroDeEmpleados();
+        } else {
+            return 0;
         }
-
-        return total / this.obtenerNumeroDeEmpleados();
     }
 }
